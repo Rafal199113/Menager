@@ -1,0 +1,234 @@
+﻿<Window x:Class="Notatki.ManagerFilesSettings" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen"  AllowsTransparency="True"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:xctk="http://schemas/xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notatki"
+        mc:Ignorable="d"
+        Title="ManagerFilesSettings" Height="1000" Width="1100">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="orange"></Setter>
+            <Setter Property="FontSize" Value="10"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="white"></Setter>
+
+                </Trigger>
+            </Style.Triggers>
+
+
+
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="orange"></Setter>
+            <Setter Property="Background" Value="#4C4645"></Setter>
+            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="IsReadOnly" Value="true"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="white"></Setter>
+
+                </Trigger>
+            </Style.Triggers>
+
+
+
+        </Style>
+        <Style TargetType="{x:Type MediaElement}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Width" Value="600"></Setter>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Border}" x:Key="border" >
+            <Style.Setters>
+                <Setter Property="Width" Value="1000"></Setter>
+                <Setter Property="Margin" Value="40,0,0,0"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+            </Style.Setters>
+
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,2">
+                <GradientStop Color="#252424" Offset="0.0" />
+                <GradientStop Color="#413D3D" Offset="0.25" />
+                <GradientStop Color="#4C4645" Offset="0.75" />
+                <GradientStop Color="#4C4645" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Width="230" HorizontalAlignment="Left" Margin="40,10,0,0" FontSize="60">Settings</Label>
+        <Border Grid.RowSpan="4" Grid.Row="1" Grid.Column="1" Width="420" Style="{StaticResource border}"   HorizontalAlignment="Left"  BorderBrush="DarkGray" BorderThickness="1,1,1,1" Margin="40,75,0,41">
+            <WrapPanel Orientation="Vertical" Width="400" Margin="9,0,9,9" >
+                <ScrollViewer    Margin="20,40,0,20" Height="576"  Width="360">
+
+
+                    <ListView x:Name="list" Background="Transparent"></ListView>
+
+
+
+                </ScrollViewer>
+                <Label Width="{Binding ElementName=liveWallpapers, Path=Width}" MouseLeftButtonDown="Label_MouseLeftButtonDown" Content="Wybierz inny folder" HorizontalContentAlignment="Center"/>
+            </WrapPanel>
+        </Border>
+        <WrapPanel Orientation="Vertical" Grid.Row="1"  Grid.RowSpan="5">
+            <Border Grid.RowSpan="2" Grid.Row="1" Width="480" Height="390"  Style="{StaticResource border}"   HorizontalAlignment="Left"  BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                <WrapPanel Orientation="Horizontal">
+                    
+                    <WrapPanel Orientation="Vertical">
+                        <Label HorizontalContentAlignment="Center" Foreground="Orange" FontSize="20" Margin="{Binding ElementName=backgroundView, Path=Margin}" Width="{Binding ElementName=backgroundView, Path=Width}">Background</Label>
+                        <Border x:Name="backgroundView" Grid.Row="1" Width="400" Height="340"  Style="{StaticResource border}"   HorizontalAlignment="Left"  BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <WrapPanel Orientation="Vertical">
+                                <MediaElement  Width="380" Margin="10" x:Name="viewer" Source="{Binding Video}" Height="280"/>
+                                
+                                <CheckBox Content="Transparent" IsChecked="{Binding transparent}" Foreground="Orange" x:Name="transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" ></CheckBox>
+                            </WrapPanel>
+                           
+                        </Border>
+                     
+                    </WrapPanel>
+                 
+
+                </WrapPanel>
+
+            </Border>
+
+            <Border Grid.Row="3" Margin="40,20,0,0" Width="480" Height="480"  Style="{StaticResource border}"     BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                <WrapPanel Orientation="Vertical" Width="900">
+
+                    <Border Grid.Row="3" Margin="40,20,0,0" Width="400" Height="289"  Style="{StaticResource border}"     BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                        <WrapPanel Margin="20,9,20,9" Orientation="Vertical" >
+
+
+
+                            <WrapPanel Orientation="Vertical" Height="239">
+                                <WrapPanel Orientation="Vertical">
+                                    <Label  Content="Icon labels color" Height="22"></Label>
+                                    <WrapPanel>
+                                        <Rectangle  x:Name="rect" Fill="{Binding labelColor}"  Width="100" Height="20" >
+
+                                        </Rectangle>
+                                        <RadioButton GroupName="colors" Checked="labels_Checked" x:Name="labels" Margin="0,3,0,0"></RadioButton>
+                                    </WrapPanel>
+
+
+
+
+                                </WrapPanel>
+                                <WrapPanel Orientation="Vertical">
+                                    <Label  Content="Icon fonts color"></Label>
+                                    <WrapPanel>
+                                        <Rectangle  x:Name="rect5" Fill="{Binding fontColor}"  Width="100" Height="20" >
+
+                                        </Rectangle>
+                                        <RadioButton  Checked="labels_Checked" GroupName="colors" x:Name="fonts" Margin="0,3,0,0"></RadioButton>
+                                    </WrapPanel>
+
+
+
+
+                                </WrapPanel>
+                                <WrapPanel Orientation="Vertical">
+                                    <Label  Content="Border color"></Label>
+                                    <WrapPanel>
+                                        <Rectangle  x:Name="rect3" Fill="{Binding borderColor}"  Width="100" Height="20" >
+
+                                        </Rectangle>
+                                        <RadioButton  Checked="labels_Checked" GroupName="colors" x:Name="border" Margin="0,3,0,0"></RadioButton>
+                                    </WrapPanel>
+
+
+
+
+                                </WrapPanel>
+                                <WrapPanel Orientation="Vertical">
+                                    <Label  Content="Icon enter Color"></Label>
+                                    <WrapPanel>
+                                        <Rectangle  x:Name="rect4" Fill="{Binding iconColor}"  Width="100" Height="20" >
+
+                                        </Rectangle>
+                                        <RadioButton  Checked="labels_Checked" GroupName="colors" x:Name="mouseEnterColor" Margin="0,3,0,0"></RadioButton>
+                                    </WrapPanel>
+
+
+
+
+                                </WrapPanel>
+                                <WrapPanel Orientation="Vertical">
+                                    <Label  Content="Background Color"></Label>
+                                    <WrapPanel>
+                                        <Rectangle  x:Name="rect6" Fill="{Binding backgroundColor}"  Width="100" Height="20" >
+
+                                        </Rectangle>
+                                        <RadioButton  Checked="labels_Checked" GroupName="colors" x:Name="backgroundColor" Margin="0,3,0,0"></RadioButton>
+                                    </WrapPanel>
+
+
+
+
+                                </WrapPanel>
+
+                            </WrapPanel>
+
+                            <colorpicker:SquarePicker Margin="20" SelectedColor="Red" x:Name="labelColor" ColorChanged="SquarePicker_ColorChanged" Loaded="labelColor_Loaded" Height="161" Width="223"></colorpicker:SquarePicker>
+                        </WrapPanel>
+                    </Border>
+                    <Border Grid.Row="5"  Margin="40,50,0,0" Width="400" Height="100"  Style="{StaticResource border}"     BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                        <WrapPanel Orientation="Horizontal" Margin="0,0,0,-1">
+                            <WrapPanel Margin="10" Orientation="Horizontal">
+                                <WrapPanel Orientation="Vertical">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <Label Width="70">Font size</Label>
+                                        <TextBox Height="20" Text="{Binding fontsize}" x:Name="size"></TextBox>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal">
+                                        <Label Width="70">Icon font size</Label>
+                                        <TextBox Height="20" Text="{Binding iconsize}" x:Name="iconFontSize"></TextBox>
+                                    </WrapPanel>
+
+
+                                </WrapPanel>
+
+                            </WrapPanel>
+                            <WrapPanel Margin="10" Orientation="Horizontal">
+                                <Label>Font family</Label>
+                                <ListBox SelectedItem="{Binding fontfamily}" x:Name="fontsList">
+
+                                </ListBox>
+                            </WrapPanel>
+                        </WrapPanel>
+                    </Border>
+
+                </WrapPanel>
+
+            </Border>
+
+        </WrapPanel>
+        <Border  HorizontalAlignment="Right" Margin="20"   Style="{StaticResource border}" Width="100" Height="50" Grid.Column="1" Grid.Row="5"   BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+            <WrapPanel  Width="93">
+                <Label MouseLeftButtonDown="save_MouseLeftButtonDown" x:Name="save" FontSize="20" Content="Save"/>
+                <Label FontSize="20" MouseLeftButtonDown="Label_MouseLeftButtonDown_1" Content="Exit"/>
+               
+            </WrapPanel>
+        </Border>
+    </Grid>
+</Window>

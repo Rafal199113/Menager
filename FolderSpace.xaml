@@ -1,0 +1,99 @@
+﻿<Window x:Name="window" KeyDown="window_KeyDown" ResizeMode="NoResize"  x:Class="Menager.FolderSpace" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Menager"
+        mc:Ignorable="d"
+        Title="FolderSpace" Height="700" Width="1200">
+    <Window.Background>
+        <SolidColorBrush Color="white"   Opacity="0.9"></SolidColorBrush>
+    </Window.Background>
+    <Window.Resources>
+       
+    </Window.Resources>
+  
+        <WrapPanel>
+        <Label Foreground="{Binding fontColor}" FontFamily="{Binding fontFamily}" Width="1200" HorizontalContentAlignment="Center" Margin="0,20,0,0" FontSize="50">Folder Size</Label>
+        <Canvas Margin="0,0,0,0" x:Name="canvas" Width="{Binding ElementName=window, Path=Width}" Height="200">
+            <Rectangle Stroke="Black" RadiusX="10" RadiusY="10"  StrokeThickness="1" Canvas.Top="50"  Canvas.Left="100"  Width="1000" x:Name="Disc" Height="100" Fill="Gray">
+              
+            </Rectangle>
+            <Rectangle Stroke="Black" Canvas.Top="50" RadiusX="10"  StrokeThickness="1" RadiusY="10" Canvas.Left="100" x:Name="rect" Width="0" Height="100" Fill="	#89CFF0">
+            </Rectangle>
+           
+            <Label Canvas.Top="50" Canvas.Left="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="FolderSize" VerticalAlignment="Center" Content="20GB" Width="{Binding ElementName=rect,Path=Width}" Height="{Binding ElementName=rect, Path=Height}"></Label>
+            <Label  Canvas.Top="50" Canvas.Left="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="DiscSize" VerticalAlignment="Center" Content="20GB" Width="{Binding ElementName=Disc,Path=Width}" Height="{Binding ElementName=Disc, Path=Height}"></Label>
+        </Canvas> 
+        <WrapPanel Margin="100,0,0,0" Orientation="Horizontal">
+            <Border BorderBrush="{Binding borderColor}" BorderThickness="1">
+                <WrapPanel >
+                    <Label Foreground="{Binding fontColor}" Width="70">Folder size</Label>
+                    <Label x:Name="foldersize" Foreground="{Binding fontColor}" Width="70"></Label>
+                </WrapPanel>
+            </Border>
+          
+            <WrapPanel>
+                <DataGrid  SelectionChanged="dataGrid1_SelectionChanged" Width="850" x:Name="folderList" Height="380">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="Button_Click">Open</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="Button_Click_1">Delete</Button>
+
+
+
+
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                      
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <ListBox ItemsSource="{Binding Path=folderList }"  x:Name="cycki">
+                               
+                            </ListBox>
+                                
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                    <DataGrid.Resources>
+                        <DataTemplate x:Key="cycki" >
+                            <RadioButton  />
+                        </DataTemplate>
+
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                             
+                                    
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#89CFF0"></Setter>
+
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                       
+                    </DataGrid.Resources>
+                    
+                </DataGrid>
+            </WrapPanel>
+
+        </WrapPanel>
+    </WrapPanel>
+    
+    
+</Window>
